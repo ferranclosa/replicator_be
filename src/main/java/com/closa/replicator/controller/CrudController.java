@@ -28,6 +28,7 @@ public class CrudController {
     @Autowired
     CrudService crudService;
 
+    @CrossOrigin
     @PostMapping(value = "readRequest", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public RequestReadoDTO provideRequests (@RequestBody RequestReadiDTO iDto){
         RequestReadoDTO oDto = new RequestReadoDTO();
