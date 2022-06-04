@@ -1,0 +1,62 @@
+spring:
+  profiles:
+    active: dev
+    include:
+      - swagger
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/replicator?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&serverTimezone=Europe/Paris
+    username: root
+    password: Martona78
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+    auto-commit: false
+    open-in-view: true
+  jpa:
+    database: mysql
+    show-sql: false
+    properties:
+        hibernate.id.new_generator_mappings: true
+        hibernate.connection.provider_disables_autocommit: false
+        hibernate.cache.use_second_level_cache: false
+        hibernate.cache.use_query_cache: false
+        hibernate.generate_statistics: false
+        hibernate.query.substitutions: true:1, false:0
+        hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+        hibernate.jdbc.batch_size: 3000
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+appparms:
+  connectors:
+    from:
+      server: as400
+      url: poitou0a.systems.uk.hsbc;database name:poitou
+      usr: hubqry
+      cred: hello
+      driver: none
+    to:
+      server: mysql
+      url: jdbc:mysql://localhost:3306/hub_hie?zeroDateTimeBehavior:convertToNull&useSSL:false&serverTimezone:Europe/Paris
+      usr: root
+      cred: Martona78
+      driver: com.mysql.cj.jdbc.Driver
+    source:
+      schema: hfrhubfp
+    target:
+      schema: hub_hie
+    generic:
+      copydata: true
+      putturbo: true
+      dropbefore: true
+      clearbefore: true
+      batchsize: 1000
+server:
+  port: 8282
+logging:
+  level:
+    org.springframework:
+      web: DEBUG
+      context: DEBUG
