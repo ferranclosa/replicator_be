@@ -6,9 +6,18 @@ import java.util.List;
 public class TemplateoDTO {
 
     private String responseCode;
+    private String responseMessage;
     private List<String> messageList = new ArrayList<>();
 
     public TemplateoDTO() {
+    }
+
+    public String getResponseMessage() {
+        return responseMessage;
+    }
+
+    public void setResponseMessage(String responseMessage) {
+        this.responseMessage = responseMessage;
     }
 
     public String getResponseCode() {

@@ -11,20 +11,15 @@ public enum MessageCode {
     APP0007("Result set is not empty. Expected to be empty", "09" ),
     APP0008("Database related error. Check stack trace in logs", "98" ),
     APP0009("See below the result of your query", "00" ),
+
     AUT0001("User is not known", "21"),
     AUT0002("User is not Active. Please check with the application Owner", "22"),
     AUT0003("Credentials are incorrect. Try again", "23"),
-
     AUT0004("You have tried incorrect credentials too many times. For security reasons, your profile has been blocked. Contact Application Owner", "24"),
     AUT0005("Unauthorised Access to a resource. Check and/or request Access to Application manager", "98"),
 
-    APP0099("Generic technical error. Check the Stack on the logs", "99" )
+    APP0099("Generic technical error. Check the Stack on the logs", "99" );
 
-
-
-
-
-    ;
     private final String mMsg;
     private final String rCode;
     private final String mCode;

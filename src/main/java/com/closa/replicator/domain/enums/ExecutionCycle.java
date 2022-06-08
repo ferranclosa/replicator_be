@@ -40,4 +40,11 @@ public enum ExecutionCycle implements Comparable<ExecutionCycle> {
         this.naturalOrder = naturalOrder;
     }
 
+    public List<ExecutionCycle> getCyclesByOrder() {
+        return cyclesByOrder;
+    }
+
+    public void setCyclesByOrder(List<ExecutionCycle> cyclesByOrder) {
+        this.cyclesByOrder = cyclesByOrder;
+    }
 }

@@ -2,6 +2,7 @@ package com.closa.replicator.controller;
 
 import com.closa.replicator.dao.RPFileRepo;
 import com.closa.replicator.dao.RPRequestRepo;
+import com.closa.replicator.domain.enums.SupportedSystems;
 import com.closa.replicator.dto.*;
 import com.closa.replicator.functions.validators.Validators;
 import com.closa.replicator.services.CrudService;
@@ -14,7 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.Arrays;
+import java.util.*;
 
 @RestController
 @RequestMapping(value="/crud/v1")
@@ -37,12 +38,12 @@ public class CrudController {
             oDto = crudService.readARequest(iDto);
         } catch (AppException e){
             oDto.setResponseCode(e.getMessageCode().getrCode());
-            oDto.getMessageList().add(e.getMessageCode().getmMsg());
+            oDto.setResponseMessage(e.getMessageCode().getmMsg());
             oDto.getMessageList().add(e.getMessageText());
         }
         catch (Exception e) {
             oDto.setResponseCode(MessageCode.APP0099.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0099.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0099.getmMsg());
             oDto.getMessageList().add(e.getLocalizedMessage());
             oDto.getMessageList().addAll(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
@@ -56,16 +57,15 @@ public class CrudController {
             oDto = crudService.createRequest(iDto);
         } catch (AppException e){
             oDto.setResponseCode(e.getMessageCode().getrCode());
-            oDto.getMessageList().add(e.getMessageCode().getmMsg());
+            oDto.setResponseMessage(e.getMessageCode().getmMsg());
             oDto.getMessageList().add(e.getMessageText());
         }
         catch (Exception e) {
             oDto.setResponseCode(MessageCode.APP0099.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0099.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0099.getmMsg());
             oDto.getMessageList().add(e.getLocalizedMessage());
             oDto.getMessageList().addAll(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
-
         return oDto;
     }
 
@@ -75,6 +75,7 @@ public class CrudController {
 
         return oDto;
     }
+    @CrossOrigin
     @PostMapping(value = "deleteRequest", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public RequestDeleteoDTO deleteRequest (@RequestBody RequestDeleteiDTO iDto){
         RequestDeleteoDTO oDto = new RequestDeleteoDTO();
@@ -83,12 +84,12 @@ public class CrudController {
             oDto = crudService.deleteARequest(iDto);
         } catch (AppException e){
             oDto.setResponseCode(e.getMessageCode().getrCode());
-            oDto.getMessageList().add(e.getMessageCode().getmMsg());
+            oDto.setResponseMessage(e.getMessageCode().getmMsg());
             oDto.getMessageList().add(e.getMessageText());
         }
         catch (Exception e) {
             oDto.setResponseCode(MessageCode.APP0099.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0099.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0099.getmMsg());
             oDto.getMessageList().add(e.getLocalizedMessage());
             oDto.getMessageList().addAll(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
@@ -104,12 +105,12 @@ public class CrudController {
             oDto = crudService.listRequests();
         } catch (AppException e){
             oDto.setResponseCode(e.getMessageCode().getrCode());
-            oDto.getMessageList().add(e.getMessageCode().getmMsg());
+            oDto.setResponseMessage(e.getMessageCode().getmMsg());
             oDto.getMessageList().add(e.getMessageText());
         }
         catch (Exception e) {
             oDto.setResponseCode(MessageCode.APP0099.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0099.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0099.getmMsg());
             oDto.getMessageList().add(e.getLocalizedMessage());
             oDto.getMessageList().addAll(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
@@ -123,12 +124,12 @@ public class CrudController {
             oDto = crudService.addFileToRequest(iDto);
         } catch (AppException e){
             oDto.setResponseCode(e.getMessageCode().getrCode());
-            oDto.getMessageList().add(e.getMessageCode().getmMsg());
+            oDto.setResponseMessage(e.getMessageCode().getmMsg());
             oDto.getMessageList().add(e.getMessageText());
         }
         catch (Exception e) {
             oDto.setResponseCode(MessageCode.APP0099.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0099.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0099.getmMsg());
             oDto.getMessageList().add(e.getLocalizedMessage());
             oDto.getMessageList().addAll(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
@@ -143,12 +144,12 @@ public class CrudController {
             oDto = crudService.changeFile(iDto);
         } catch (AppException e){
             oDto.setResponseCode(e.getMessageCode().getrCode());
-            oDto.getMessageList().add(e.getMessageCode().getmMsg());
+            oDto.setResponseMessage(e.getMessageCode().getmMsg());
             oDto.getMessageList().add(e.getMessageText());
         }
         catch (Exception e) {
             oDto.setResponseCode(MessageCode.APP0099.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0099.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0099.getmMsg());
             oDto.getMessageList().add(e.getLocalizedMessage());
             oDto.getMessageList().addAll(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
@@ -162,12 +163,12 @@ public class CrudController {
             oDto = crudService.removeFile(iDto);
         } catch (AppException e){
             oDto.setResponseCode(e.getMessageCode().getrCode());
-            oDto.getMessageList().add(e.getMessageCode().getmMsg());
+            oDto.setResponseMessage(e.getMessageCode().getmMsg());
             oDto.getMessageList().add(e.getMessageText());
         }
         catch (Exception e) {
             oDto.setResponseCode(MessageCode.APP0099.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0099.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0099.getmMsg());
             oDto.getMessageList().add(e.getLocalizedMessage());
             oDto.getMessageList().addAll(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
@@ -181,12 +182,21 @@ public class CrudController {
             Validators.validate(iDto);
         } catch (ValidationJsonException e) {
             oDto.setResponseCode(MessageCode.APP0003.getrCode());
-            oDto.getMessageList().add(MessageCode.APP0003.getmMsg());
+            oDto.setResponseMessage(MessageCode.APP0003.getmMsg());
             oDto.getMessageList().addAll(e.getMultiExceptions());
 
         }
         return oDto;
 
+    }
+    @CrossOrigin
+    @GetMapping(value = "getSupportedSystems",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<String> listSystems (){
+        List<String>  oDto = new ArrayList<>();
+        for (SupportedSystems one : SupportedSystems.values()){
+            oDto.add(one.toString().toUpperCase());
+        }
+        return oDto;
     }
 
 

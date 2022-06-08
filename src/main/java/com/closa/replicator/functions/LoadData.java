@@ -26,13 +26,13 @@ public class LoadData implements CommandLineRunner {
         RPRequest rpRequest = new RPRequest();
         rpRequest.setRequestCode("HUB");
         rpRequest.setRequestDescription("HUB for testing HIE");
-        rpRequest.setSourceSystem("as400");
+        rpRequest.setSourceSystem(SupportedSystems.AS400.name());
         rpRequest.setSourceURL("poitou0a.systems.uk.hsbc;database name:poitou");
         rpRequest.setSourceUser("hubqry");
         rpRequest.setSourceCred("QRYHUB02");
         rpRequest.setSourceSchema("hfrhubfp");
         rpRequest.setSourceTempSchema("qtemp");
-        rpRequest.setTargetSystem("mysql");
+        rpRequest.setTargetSystem(SupportedSystems.MYSQL.name());
         rpRequest.setTargetURL("jdbc:mysql://localhost:3306/hub_hie?zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Europe/Paris");
         rpRequest.setTargetUser("root");
         rpRequest.setTargetCred("Martona78");
